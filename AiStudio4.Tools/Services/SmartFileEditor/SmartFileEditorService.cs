@@ -42,6 +42,15 @@ namespace AiStudio4.Tools.Services.SmartFileEditor
                 
                 foreach (var edit in edits)
                 {
+                    if(string.IsNullOrEmpty(edit.OldText))
+                    {
+                        return new EditResult
+                        {
+                            Success = false,
+                            ErrorMessage = $"old_content must be set."
+                        };
+                    }
+
                     var result = ApplyEditToContent(content, edit);
                     
                     if (!result.Success)
@@ -144,6 +153,8 @@ namespace AiStudio4.Tools.Services.SmartFileEditor
         /// </summary>
         private List<ExactMatch> FindExactMatches(string content, string searchText)
         {
+            if (string.IsNullOrEmpty(content))
+                return new List<ExactMatch> { new ExactMatch { ColumnNumber = 0, LineNumber = 0, Context = GetContext("", 0, 0), Index = 0 } };
             var matches = new List<ExactMatch>();
             int index = 0;
             

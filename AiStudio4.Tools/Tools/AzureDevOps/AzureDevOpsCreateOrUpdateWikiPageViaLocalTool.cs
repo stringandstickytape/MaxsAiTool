@@ -73,9 +73,9 @@ The tool automatically handles:
         "type": "string", 
         "description": "Azure DevOps project name" 
       },
-      "wiki_name": { 
+      "wiki_id": { 
         "type": "string", 
-        "description": "Name of the wiki" 
+        "description": "ID of the wiki" 
       },
       "path": { 
         "type": "string", 
@@ -112,7 +112,7 @@ The tool automatically handles:
         "description": "Automatically pull latest changes before editing (default: true)" 
       }
     },
-    "required": ["organization", "project", "wiki_name", "path", "changes"]
+    "required": ["organization", "project", "wiki_id", "path", "changes"]
   }
 }
 """
@@ -574,7 +574,7 @@ The tool automatically handles:
             {
                 Organization = json.organization,
                 Project = json.project,
-                WikiId = json.wiki_id,
+                WikiId = json.wiki_id ?? json.wiki_name,
                 Path = json.path,
                 Comment = json.comment,
                 AutoPull = json.auto_pull ?? true,
