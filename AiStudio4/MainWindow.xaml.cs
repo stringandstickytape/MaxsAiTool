@@ -625,7 +625,7 @@ public partial class WebViewWindow : Window
             if (destPath.EndsWith("/") || destPath.EndsWith("\\"))
                 destPath = destPath.Substring(0, destPath.Length - 1);
 
-            string arguments = $"/C {condaPath} && conda activate whisperx && whisperx \"{filename}\"  --language en --model  large-v3 --output_dir \"{destPath}\" ";
+            string arguments = $"/C {condaPath} && conda activate whisperx_new && whisperx \"{filename}\"  --language en --model  large-v3 --output_dir \"{destPath}\" ";
 
             ProcessStartInfo startInfo = new ProcessStartInfo
             {
